@@ -33,8 +33,16 @@
 (def.module starter.controllers [])
 
 
-(def.controller starter.controllers.AppCtrl [$scope  $timeout]
+(def.service starter.TempService [$http]
+  (obj
+    :addtemp0 (fn [title]
+                (-> $http
+                  (.get (str serverurl+"temp/addtemp0")(obj :params {:title  title } ))
+                  (.then (fn [response] response))))))
 
+(def.controller starter.controllers.AppCtrl [$scope  $timeout  $http]
+
+  (.click ($ :#mm0-new) (fn [] (newmm0 $http)))
   (println "AppCtrl")
   (.parse js/$.parser)
   (.treegrid ($ :#temptree) (obj :url (str serverurl "temp/gettemptree") :onContextMenu menushow  :method "get" ))
@@ -46,13 +54,26 @@
   (js/alert 33)
   )
 
+(defn newmm0 [$http]
+  (println  "2323" $http)
+  )
 (defn menushow [e node]
 
-  (js/console.log "haha")
   (.preventDefault e)
-  ;(.tree ($ :#temptree) "select" node.target)
+  (.treegrid ($ :#temptree) "select" node._id)
+  ;(println (second (clojure.string/split node._id #"_")))
+  (if (= node._id "0")
+    (.menu ($ :#mm_0) "show" (obj :left e.pageX :top e.pageY))
+    (case (second (clojure.string/split node._id #"_"))
+      "1" (.menu ($ :#mm_1) "show" (obj :left e.pageX :top e.pageY))
+      "2" (.menu ($ :#mm_2) "show" (obj :left e.pageX :top e.pageY))
+      "3" (.menu ($ :#mm_3) "show" (obj :left e.pageX :top e.pageY))
+      "default"
+      )
+    )
 
-  (.menu ($ :#mm) "show" (obj :left e.pageX :top e.pageY))
+
+  ;(.menu ($ :#mm_0) "show" (obj :left e.pageX :top e.pageY))
 
   (js/console.log node)
   )
