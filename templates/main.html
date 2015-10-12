@@ -1,10 +1,30 @@
-<table title="移动急救模板" class="easyui-treegrid" style="width:100%;height: 500px;"
+<table id="temptree" title="移动急救模板" class="easyui-treegrid" style="width:100%;height: 500px;"
        rownumbers="true"
-       idField="id" treeField="name">
+       idField="_id" treeField="title" >
     <thead>
     <tr>
-        <th data-options="field:'name'" width="35%">属性名</th>
-        <th data-options="field:'value'"  width="60%" >属性值</th>
+        <th data-options="field:'title'" width="35%">属性名</th>
+        <th data-options="field:'value',editor:{type:'checkbox',options:{on:true,off:false}}"  width="60%" >属性值</th>
     </tr>
     </thead>
 </table>
+
+<div id="mm_0" class="easyui-menu" style="width:120px;">
+    <div id="mm0-new"  data-options="iconCls:'icon-add'">新增</div>
+    <div id="mm0-remove"  data-options="iconCls:'icon-remove'">删除</div>
+    <div class="menu-sep"></div>
+</div>
+<div id="mm_1" class="easyui-menu" style="width:120px;">
+    <div id="mm1-new"  data-options="iconCls:'icon-add'">新增</div>
+
+</div>
+<div id="mm_2" class="easyui-menu" style="width:120px;">
+    <div id="mm2-new"  data-options="iconCls:'icon-add'">新增</div>
+    <div id="mm2-remove"  data-options="iconCls:'icon-remove'">删除</div>
+    <div id="mm2-alter"  data-options="iconCls:'icon-remove'">修改</div>
+
+</div>
+<div id="mm_3" class="easyui-menu" style="width:120px;">
+    <div id="mm3-remove"  data-options="iconCls:'icon-remove'">删除</div>
+    <div id="mm3-alter"  data-options="iconCls:'icon-remove'">修改</div>
+</div>
