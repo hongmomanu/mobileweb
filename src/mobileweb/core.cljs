@@ -29,10 +29,8 @@
 
 (def.controller starter.controllers.AppCtrl [$scope  $timeout]
 
-
-  (js/alert 1)
-  (.parse js/$.parser)
   (println "AppCtrl")
+  (.parse js/$.parser)
   (! $scope.treedata  {})
 
   )
