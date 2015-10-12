@@ -8,25 +8,23 @@ cljs.core.enable_console_print_BANG_.call(null);
 cljs.core.println.call(null,"Hello world!");
 mobileweb.core.starter = angular.module("starter",["ngRoute","starter.controllers"]);
 angular.module("starter").config(["$routeProvider",(function ($routeProvider){
-return $routeProvider.when("/",(function (){var G__7713 = {};
-(G__7713["controller"] = "AppCtrl");
+return $routeProvider.when("/",(function (){var G__7733 = {};
+(G__7733["controller"] = "AppCtrl");
 
-(G__7713["templateUrl"] = "templates/main.html");
+(G__7733["templateUrl"] = "templates/main.html");
 
-return G__7713;
-})()).otherwise((function (){var G__7717 = {};
-(G__7717["redirectTo"] = "/");
+return G__7733;
+})()).otherwise((function (){var G__7737 = {};
+(G__7737["redirectTo"] = "/");
 
-return G__7717;
+return G__7737;
 })());
 })]);
 mobileweb.core.starter_controllers = angular.module("starter.controllers",[]);
 mobileweb.core.starter_controllers_AppCtrl = ["$scope","$timeout",(function ($scope,$timeout){
-alert((1));
+cljs.core.println.call(null,"AppCtrl");
 
 ($["parser"]).parse();
-
-cljs.core.println.call(null,"AppCtrl");
 
 var o_SHARP_ = $scope;
 (o_SHARP_["treedata"] = cljs.core.PersistentArrayMap.EMPTY);
