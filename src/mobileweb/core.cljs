@@ -53,18 +53,45 @@
                   (.post (str serverurl "temp/removetemp2")(obj   :text  text :id id  ))
                   (.then (fn [response] response))))
 
+    :removetemp3 (fn [parenttext text id]
+                (-> $http
+                  (.post (str serverurl "temp/removetemp3")(obj :parenttext parenttext  :text  text :id id  ))
+                  (.then (fn [response] response))))
+
+    :removemm01 (fn [id]
+                (-> $http
+                  (.post (str serverurl "temp/removemm01")(obj  :id id  ))
+                  (.then (fn [response] response))))
+
+    :altertemp3 (fn [parenttext text id value]
+                (-> $http
+                  (.post (str serverurl "temp/altertemp3")(obj :parenttext parenttext :value value  :text  text :id id  ))
+                  (.then (fn [response] response))))
+
+    :altermm10 (fn [  value id]
+                (-> $http
+                  (.post (str serverurl "temp/altermm10")(obj  :value value :id id  ))
+                  (.then (fn [response] response))))
+
 
     ))
 
 (def.controller starter.controllers.AppCtrl [$scope  $timeout  $http TempService]
 
   (.click ($ :#mm0-new) (fn [] (newmm0  TempService)))
+  ;(.click ($ :#mm0-new) (fn [] (newmm0  TempService)))
 
   (.click ($ :#mm1-new) (fn [] (newmm1  TempService)))
 
   (.click ($ :#mm2-new) (fn [] (newmm2  TempService)))
 
   (.click ($ :#mm2-remove) (fn [] (removemm2  TempService)))
+
+  (.click ($ :#mm3-remove) (fn [] (removemm3  TempService)))
+
+  (.click ($ :#mm0_1-remove) (fn [] (removemm01  TempService)))
+
+  (.click ($ :#mm1_0-alter) (fn [] (altermm10  TempService)))
 
   (println "AppCtrl")
   (.parse js/$.parser)
@@ -92,7 +119,7 @@
                                    (.addtemp0 r)
                                    (.then (fn [response]
                                             (.treegrid ($ :#temptree) "reload")
-                                            (.alert $.messager "提示" response.message)
+                                            (.alert $.messager "提示" response.data.message)
 
                                             )))
                                  )
@@ -114,7 +141,7 @@
                                        (.addtemp1 r selectednode.id)
                                        (.then (fn [response]
                                                 (.treegrid ($ :#temptree) "reload" (str selectednode.id "_1_1"))
-                                                (.alert $.messager "提示" response.message)
+                                                (.alert $.messager "提示" response.data.message)
 
                                                 )))
                                      )
@@ -153,13 +180,13 @@
 
     (println selectednode)
     (.confirm $.messager "提示" "确定要删除此节点么?"
-        (fn [r] (when-not (nil? r) (do (println r)
+        (fn [r] (when (true? r) (do (println r)
                                      (-> TempService
                                        (.removetemp2  selectednode.title selectednode.id )
                                        (.then (fn [response]
                                                 (println response)
                                                 (.treegrid ($ :#temptree) "reload" (str selectednode.id "_1_1"))
-                                                (.alert $.messager "提示" response.message)
+                                                (.alert $.messager "提示" response.data.message)
                                                 )))
                                      )
                   )))
@@ -167,6 +194,106 @@
 
 
 
+
+
+  )
+
+(defn removemm3 [ TempService]
+
+  (let [
+         selectednode (.treegrid ($ :#temptree) "getSelected")
+         parentnode (.treegrid ($ :#temptree) "find" selectednode._parentId)
+         ]
+
+
+    (.confirm $.messager "提示" "确定要删除此节点么?"
+        (fn [r] (when (true? r) (do (println r)
+                                     (-> TempService
+                                       (.removetemp3 parentnode.title  selectednode.title selectednode.id )
+                                       (.then (fn [response]
+                                                (println response)
+                                                (.treegrid ($ :#temptree) "reload" (str selectednode.id "_1_1"))
+                                                (.alert $.messager "提示" response.data.message)
+                                                )))
+                                     )
+                  )))
+    )
+
+
+
+
+
+  )
+
+(defn removemm01 [TempService]
+
+  (let [
+         selectednode (.treegrid ($ :#temptree) "getSelected")
+
+         ]
+
+
+    (.confirm $.messager "提示" "确定要删除此节点么?"
+      (fn [r] (when (true? r) (do (println r)
+                                (-> TempService
+                                  (.removemm01  selectednode._id )
+                                  (.then (fn [response]
+                                           (println response)
+                                           (.treegrid ($ :#temptree) "reload")
+                                           (.alert $.messager "提示" response.data.message)
+                                           )))
+                                )
+                )))
+    )
+  )
+
+(defn altertemp3 [TempService]
+  (let [
+         selectednode (.treegrid ($ :#temptree) "getSelected")
+         parentnode (.treegrid ($ :#temptree) "find" selectednode._parentId)
+         ]
+
+
+    (.confirm $.messager "提示" "是否开启选项?"
+      (fn [r]
+
+
+        (-> TempService
+          (.altertemp3 parentnode.title  selectednode.title selectednode.id  r)
+          (.then (fn [response]
+                   (println response)
+                   (.treegrid ($ :#temptree) "reload" (str selectednode.id "_1_1"))
+                   (.alert $.messager "提示" response.data.message)
+                   )))
+
+
+        ))
+    )
+
+
+  )
+
+(defn altermm10 [TempService]
+  (let [
+         selectednode (.treegrid ($ :#temptree) "getSelected")
+
+         ]
+
+
+    (.prompt $.messager "提示" "请输入内容:"
+      (fn [r] (when-not (nil? r) (do
+                                   (-> TempService
+                                     (.altermm10  r selectednode.id)
+                                     (.then (fn [response]
+                                              (println response.data.message)
+                                              (.treegrid ($ :#temptree) "reload")
+                                              (.alert $.messager "提示" response.data.message)
+
+                                              )))
+                                   ))
+                ))
+    (.val ($ :.messager-input) selectednode.value)
+    )
 
 
   )
@@ -187,7 +314,7 @@
               )
         "2" (.menu ($ :#mm_2) "show" (obj :left e.pageX :top e.pageY))
         "3" (.menu ($ :#mm_3) "show" (obj :left e.pageX :top e.pageY))
-        "default"
+        (.menu ($ :#mm_0_1) "show" (obj :left e.pageX :top e.pageY))
         )
       )
 
