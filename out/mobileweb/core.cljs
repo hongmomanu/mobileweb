@@ -43,6 +43,15 @@
                 (-> $http
                   (.post (str serverurl "temp/addtemp1")(obj  :text  text :id id  ))
                   (.then (fn [response] response))))
+    :addtemp2 (fn [keytext text id]
+                (-> $http
+                  (.post (str serverurl "temp/addtemp2")(obj :keytext keytext  :text  text :id id  ))
+                  (.then (fn [response] response))))
+
+    :removetemp2 (fn [ text id]
+                (-> $http
+                  (.post (str serverurl "temp/removetemp2")(obj   :text  text :id id  ))
+                  (.then (fn [response] response))))
 
 
     ))
@@ -52,6 +61,10 @@
   (.click ($ :#mm0-new) (fn [] (newmm0  TempService)))
 
   (.click ($ :#mm1-new) (fn [] (newmm1  TempService)))
+
+  (.click ($ :#mm2-new) (fn [] (newmm2  TempService)))
+
+  (.click ($ :#mm2-remove) (fn [] (removemm2  TempService)))
 
   (println "AppCtrl")
   (.parse js/$.parser)
@@ -79,7 +92,7 @@
                                    (.addtemp0 r)
                                    (.then (fn [response]
                                             (.treegrid ($ :#temptree) "reload")
-                                            (.alert $.messager "提示" (response.message))
+                                            (.alert $.messager "提示" response.message)
 
                                             )))
                                  )
@@ -101,8 +114,52 @@
                                        (.addtemp1 r selectednode.id)
                                        (.then (fn [response]
                                                 (.treegrid ($ :#temptree) "reload" (str selectednode.id "_1_1"))
-                                                (.alert $.messager "提示" (response.message))
+                                                (.alert $.messager "提示" response.message)
 
+                                                )))
+                                     )
+                  )))
+    )
+
+  )
+
+(defn newmm2 [ TempService]
+
+  (let [
+         selectednode (.treegrid ($ :#temptree) "getSelected")
+         ]
+
+    (.prompt $.messager "提示" "请输入内容:"
+        (fn [r] (when-not (nil? r) (do (println r)
+                                     (-> TempService
+                                       (.addtemp2 selectednode.title r selectednode.id)
+                                       (.then (fn [response]
+                                                (println response.data.message)
+                                                (.treegrid ($ :#temptree) "reload" (str selectednode.id "_1_1"))
+                                                (.alert $.messager "提示" response.data.message)
+
+                                                )))
+                                     )
+                  )))
+    )
+
+  )
+
+(defn removemm2 [ TempService]
+
+  (let [
+         selectednode (.treegrid ($ :#temptree) "getSelected")
+         ]
+
+    (println selectednode)
+    (.confirm $.messager "提示" "确定要删除此节点么?"
+        (fn [r] (when-not (nil? r) (do (println r)
+                                     (-> TempService
+                                       (.removetemp2  selectednode.title selectednode.id )
+                                       (.then (fn [response]
+                                                (println response)
+                                                (.treegrid ($ :#temptree) "reload" (str selectednode.id "_1_1"))
+                                                (.alert $.messager "提示" response.message)
                                                 )))
                                      )
                   )))
@@ -113,6 +170,8 @@
 
 
   )
+
+
 (defn menushow [e node]
 
   (.preventDefault e)
