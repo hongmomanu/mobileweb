@@ -55,6 +55,18 @@
   )
 
 (defn newmm0 [$http TempService]
+
+  #_(let [
+         selectednode (.treegrid ($ :#temptree) "getSelected")
+         ]
+    (println selectednode)
+
+    )
+
+  (.prompt js/$.messager "提示" "请输入内容:"
+    (fn [r] (when-not (nil? r) (do (println r))
+                                                 )))
+
   (-> TempService
     (.addtemp0 "title")
     (.then (fn [response] (println ""2222))))
@@ -75,9 +87,6 @@
       "default"
       )
     )
-
-
-  ;(.menu ($ :#mm_0) "show" (obj :left e.pageX :top e.pageY))
 
   (js/console.log node)
   )
