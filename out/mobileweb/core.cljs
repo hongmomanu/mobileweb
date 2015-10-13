@@ -38,11 +38,21 @@
     :addtemp0 (fn [title]
                 (-> $http
                   (.post (str serverurl "temp/addtemp0")(obj  :title  title  ))
-                  (.then (fn [response] response))))))
+                  (.then (fn [response] response))))
+    :addtemp1 (fn [text id]
+                (-> $http
+                  (.post (str serverurl "temp/addtemp1")(obj  :text  text :id id  ))
+                  (.then (fn [response] response))))
+
+
+    ))
 
 (def.controller starter.controllers.AppCtrl [$scope  $timeout  $http TempService]
 
-  (.click ($ :#mm0-new) (fn [] (newmm0 $http TempService)))
+  (.click ($ :#mm0-new) (fn [] (newmm0  TempService)))
+
+  (.click ($ :#mm1-new) (fn [] (newmm1  TempService)))
+
   (println "AppCtrl")
   (.parse js/$.parser)
   (.treegrid ($ :#temptree) (obj :url (str serverurl "temp/gettemptree") :onContextMenu menushow  :method "get" ))
@@ -54,7 +64,7 @@
   (js/alert 33)
   )
 
-(defn newmm0 [$http TempService]
+(defn newmm0 [ TempService]
 
   #_(let [
          selectednode (.treegrid ($ :#temptree) "getSelected")
@@ -74,6 +84,31 @@
                                             )))
                                  )
                                                  )))
+
+
+
+  )
+
+(defn newmm1 [ TempService]
+
+  (let [
+         selectednode (.treegrid ($ :#temptree) "getSelected")
+         ]
+
+    (.prompt $.messager "提示" "请输入内容:"
+        (fn [r] (when-not (nil? r) (do (println r)
+                                     (-> TempService
+                                       (.addtemp1 r selectednode.id)
+                                       (.then (fn [response]
+                                                (.treegrid ($ :#temptree) "reload" (str selectednode.id "_1_1"))
+                                                (.alert $.messager "提示" (response.message))
+
+                                                )))
+                                     )
+                  )))
+    )
+
+
 
 
 
