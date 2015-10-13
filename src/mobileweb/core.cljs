@@ -37,7 +37,7 @@
   (obj
     :addtemp0 (fn [title]
                 (-> $http
-                  (.get (str serverurl+"temp/addtemp0")(obj :params {:title  title } ))
+                  (.post (str serverurl "temp/addtemp0")(obj  :title  title  ))
                   (.then (fn [response] response))))))
 
 (def.controller starter.controllers.AppCtrl [$scope  $timeout  $http TempService]
@@ -63,30 +63,43 @@
 
     )
 
-  (.prompt js/$.messager "提示" "请输入内容:"
-    (fn [r] (when-not (nil? r) (do (println r))
+  (.prompt $.messager "提示" "请输入内容:"
+    (fn [r] (when-not (nil? r) (do (println r)
+                                 (-> TempService
+                                   (.addtemp0 r)
+                                   (.then (fn [response]
+                                            (.treegrid ($ :#temptree) "reload")
+                                            (.alert $.messager "提示" (response.message))
+
+                                            )))
+                                 )
                                                  )))
 
-  (-> TempService
-    (.addtemp0 "title")
-    (.then (fn [response] (println ""2222))))
 
-  (println  "2323" TempService)
+
   )
 (defn menushow [e node]
 
   (.preventDefault e)
   (.treegrid ($ :#temptree) "select" node._id)
-  ;(println (second (clojure.string/split node._id #"_")))
-  (if (= node._id "0")
-    (.menu ($ :#mm_0) "show" (obj :left e.pageX :top e.pageY))
-    (case (second (clojure.string/split node._id #"_"))
-      "1" (.menu ($ :#mm_1) "show" (obj :left e.pageX :top e.pageY))
-      "2" (.menu ($ :#mm_2) "show" (obj :left e.pageX :top e.pageY))
-      "3" (.menu ($ :#mm_3) "show" (obj :left e.pageX :top e.pageY))
-      "default"
+  (let [
+         arr (clojure.string/split node._id #"_")
+         ]
+    (if (= node._id "0")
+      (.menu ($ :#mm_0) "show" (obj :left e.pageX :top e.pageY))
+      (case (second arr)
+        "1" (if (= (last arr ) "1")(.menu ($ :#mm_1) "show" (obj :left e.pageX :top e.pageY))
+              (.menu ($ :#mm_1_0) "show" (obj :left e.pageX :top e.pageY))
+              )
+        "2" (.menu ($ :#mm_2) "show" (obj :left e.pageX :top e.pageY))
+        "3" (.menu ($ :#mm_3) "show" (obj :left e.pageX :top e.pageY))
+        "default"
+        )
       )
-    )
 
-  (js/console.log node)
+    )
+  ;(println (second (clojure.string/split node._id #"_")))
+
+
+
   )
