@@ -40,9 +40,9 @@
                   (.get (str serverurl+"temp/addtemp0")(obj :params {:title  title } ))
                   (.then (fn [response] response))))))
 
-(def.controller starter.controllers.AppCtrl [$scope  $timeout  $http]
+(def.controller starter.controllers.AppCtrl [$scope  $timeout  $http TempService]
 
-  (.click ($ :#mm0-new) (fn [] (newmm0 $http)))
+  (.click ($ :#mm0-new) (fn [] (newmm0 $http TempService)))
   (println "AppCtrl")
   (.parse js/$.parser)
   (.treegrid ($ :#temptree) (obj :url (str serverurl "temp/gettemptree") :onContextMenu menushow  :method "get" ))
@@ -54,8 +54,12 @@
   (js/alert 33)
   )
 
-(defn newmm0 [$http]
-  (println  "2323" $http)
+(defn newmm0 [$http TempService]
+  (-> TempService
+    (.addtemp0 "title")
+    (.then (fn [response] (println ""2222))))
+
+  (println  "2323" TempService)
   )
 (defn menushow [e node]
 
