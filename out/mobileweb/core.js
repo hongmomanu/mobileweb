@@ -9,154 +9,154 @@ cljs.core.println.call(null,"Hello world!");
 mobileweb.core.serverurl = "http://192.168.2.100:3000/";
 mobileweb.core.starter = angular.module("starter",["ngRoute","starter.controllers"]);
 angular.module("starter").config(["$routeProvider",(function ($routeProvider){
-return $routeProvider.when("/",(function (){var G__13120 = {};
-(G__13120["controller"] = "AppCtrl");
+return $routeProvider.when("/",(function (){var G__6399 = {};
+(G__6399["controller"] = "AppCtrl");
 
-(G__13120["templateUrl"] = "templates/main.html");
+(G__6399["templateUrl"] = "templates/main.html");
 
-return G__13120;
-})()).otherwise((function (){var G__13124 = {};
-(G__13124["redirectTo"] = "/");
+return G__6399;
+})()).otherwise((function (){var G__6403 = {};
+(G__6403["redirectTo"] = "/");
 
-return G__13124;
+return G__6403;
 })());
 })]);
 mobileweb.core.starter_controllers = angular.module("starter.controllers",[]);
 mobileweb.core.starter_TempService = ["$http",(function ($http){
-var G__13128 = {};
-(G__13128["removetemp3"] = ((function (G__13128){
+var G__6407 = {};
+(G__6407["removetemp3"] = ((function (G__6407){
 return (function (parenttext,text,id){
-return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/removetemp3")].join(''),(function (){var G__13132 = {};
-(G__13132["id"] = id);
+return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/removetemp3")].join(''),(function (){var G__6411 = {};
+(G__6411["id"] = id);
 
-(G__13132["parenttext"] = parenttext);
+(G__6411["parenttext"] = parenttext);
 
-(G__13132["text"] = text);
+(G__6411["text"] = text);
 
-return G__13132;
-})()).then(((function (G__13128){
+return G__6411;
+})()).then(((function (G__6407){
 return (function (response){
 return response;
-});})(G__13128))
+});})(G__6407))
 );
-});})(G__13128))
+});})(G__6407))
 );
 
-(G__13128["addtemp1"] = ((function (G__13128){
+(G__6407["addtemp1"] = ((function (G__6407){
 return (function (text,id){
-return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/addtemp1")].join(''),(function (){var G__13136 = {};
-(G__13136["id"] = id);
+return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/addtemp1")].join(''),(function (){var G__6415 = {};
+(G__6415["id"] = id);
 
-(G__13136["text"] = text);
+(G__6415["text"] = text);
 
-return G__13136;
-})()).then(((function (G__13128){
+return G__6415;
+})()).then(((function (G__6407){
 return (function (response){
 return response;
-});})(G__13128))
+});})(G__6407))
 );
-});})(G__13128))
+});})(G__6407))
 );
 
-(G__13128["removemm01"] = ((function (G__13128){
+(G__6407["removemm01"] = ((function (G__6407){
 return (function (id){
-return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/removemm01")].join(''),(function (){var G__13140 = {};
-(G__13140["id"] = id);
+return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/removemm01")].join(''),(function (){var G__6419 = {};
+(G__6419["id"] = id);
 
-return G__13140;
-})()).then(((function (G__13128){
+return G__6419;
+})()).then(((function (G__6407){
 return (function (response){
 return response;
-});})(G__13128))
+});})(G__6407))
 );
-});})(G__13128))
+});})(G__6407))
 );
 
-(G__13128["addtemp2"] = ((function (G__13128){
+(G__6407["addtemp2"] = ((function (G__6407){
 return (function (keytext,text,id){
-return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/addtemp2")].join(''),(function (){var G__13144 = {};
-(G__13144["keytext"] = keytext);
+return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/addtemp2")].join(''),(function (){var G__6423 = {};
+(G__6423["keytext"] = keytext);
 
-(G__13144["id"] = id);
+(G__6423["id"] = id);
 
-(G__13144["text"] = text);
+(G__6423["text"] = text);
 
-return G__13144;
-})()).then(((function (G__13128){
+return G__6423;
+})()).then(((function (G__6407){
 return (function (response){
 return response;
-});})(G__13128))
+});})(G__6407))
 );
-});})(G__13128))
+});})(G__6407))
 );
 
-(G__13128["altermm10"] = ((function (G__13128){
+(G__6407["altermm10"] = ((function (G__6407){
 return (function (value,id){
-return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/altermm10")].join(''),(function (){var G__13148 = {};
-(G__13148["value"] = value);
+return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/altermm10")].join(''),(function (){var G__6427 = {};
+(G__6427["value"] = value);
 
-(G__13148["id"] = id);
+(G__6427["id"] = id);
 
-return G__13148;
-})()).then(((function (G__13128){
+return G__6427;
+})()).then(((function (G__6407){
 return (function (response){
 return response;
-});})(G__13128))
+});})(G__6407))
 );
-});})(G__13128))
+});})(G__6407))
 );
 
-(G__13128["altertemp3"] = ((function (G__13128){
+(G__6407["altertemp3"] = ((function (G__6407){
 return (function (parenttext,text,id,value){
-return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/altertemp3")].join(''),(function (){var G__13152 = {};
-(G__13152["value"] = value);
+return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/altertemp3")].join(''),(function (){var G__6431 = {};
+(G__6431["value"] = value);
 
-(G__13152["id"] = id);
+(G__6431["id"] = id);
 
-(G__13152["parenttext"] = parenttext);
+(G__6431["parenttext"] = parenttext);
 
-(G__13152["text"] = text);
+(G__6431["text"] = text);
 
-return G__13152;
-})()).then(((function (G__13128){
+return G__6431;
+})()).then(((function (G__6407){
 return (function (response){
 return response;
-});})(G__13128))
+});})(G__6407))
 );
-});})(G__13128))
+});})(G__6407))
 );
 
-(G__13128["addtemp0"] = ((function (G__13128){
+(G__6407["addtemp0"] = ((function (G__6407){
 return (function (title){
-return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/addtemp0")].join(''),(function (){var G__13156 = {};
-(G__13156["title"] = title);
+return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/addtemp0")].join(''),(function (){var G__6435 = {};
+(G__6435["title"] = title);
 
-return G__13156;
-})()).then(((function (G__13128){
+return G__6435;
+})()).then(((function (G__6407){
 return (function (response){
 return response;
-});})(G__13128))
+});})(G__6407))
 );
-});})(G__13128))
+});})(G__6407))
 );
 
-(G__13128["removetemp2"] = ((function (G__13128){
+(G__6407["removetemp2"] = ((function (G__6407){
 return (function (text,id){
-return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/removetemp2")].join(''),(function (){var G__13160 = {};
-(G__13160["id"] = id);
+return $http.post([cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/removetemp2")].join(''),(function (){var G__6439 = {};
+(G__6439["id"] = id);
 
-(G__13160["text"] = text);
+(G__6439["text"] = text);
 
-return G__13160;
-})()).then(((function (G__13128){
+return G__6439;
+})()).then(((function (G__6407){
 return (function (response){
 return response;
-});})(G__13128))
+});})(G__6407))
 );
-});})(G__13128))
+});})(G__6407))
 );
 
-return G__13128;
+return G__6407;
 })];
 
 angular.module("starter").service("TempService",mobileweb.core.starter_TempService);
@@ -193,14 +193,14 @@ cljs.core.println.call(null,"AppCtrl");
 
 ($["parser"]).parse();
 
-return jayq.core.$.call(null,new cljs.core.Keyword(null,"#temptree","#temptree",-516572480)).treegrid((function (){var G__13164 = {};
-(G__13164["method"] = "get");
+return jayq.core.$.call(null,new cljs.core.Keyword(null,"#temptree","#temptree",-516572480)).treegrid((function (){var G__6443 = {};
+(G__6443["method"] = "get");
 
-(G__13164["url"] = [cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/gettemptree")].join(''));
+(G__6443["url"] = [cljs.core.str(mobileweb.core.serverurl),cljs.core.str("temp/gettemptree")].join(''));
 
-(G__13164["onContextMenu"] = mobileweb.core.menushow);
+(G__6443["onContextMenu"] = mobileweb.core.menushow);
 
-return G__13164;
+return G__6443;
 })());
 })];
 
@@ -380,63 +380,63 @@ jayq.core.$.call(null,new cljs.core.Keyword(null,"#temptree","#temptree",-516572
 
 var arr = clojure.string.split.call(null,node._id,/_/);
 if(cljs.core._EQ_.call(null,node._id,"0")){
-return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_0","#mm_0",1029258867)).menu("show",(function (){var G__13193 = {};
-(G__13193["top"] = (e["pageY"]));
+return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_0","#mm_0",1029258867)).menu("show",(function (){var G__6472 = {};
+(G__6472["top"] = (e["pageY"]));
 
-(G__13193["left"] = (e["pageX"]));
+(G__6472["left"] = (e["pageX"]));
 
-return G__13193;
+return G__6472;
 })());
 } else {
-var G__13197 = cljs.core.second.call(null,arr);
-switch (G__13197) {
+var G__6476 = cljs.core.second.call(null,arr);
+switch (G__6476) {
 case "1":
 if(cljs.core._EQ_.call(null,cljs.core.last.call(null,arr),"1")){
-return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_1","#mm_1",962371891)).menu("show",(function (){var G__13198 = {};
-(G__13198["top"] = (e["pageY"]));
+return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_1","#mm_1",962371891)).menu("show",(function (){var G__6477 = {};
+(G__6477["top"] = (e["pageY"]));
 
-(G__13198["left"] = (e["pageX"]));
+(G__6477["left"] = (e["pageX"]));
 
-return G__13198;
+return G__6477;
 })());
 } else {
-return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_1_0","#mm_1_0",-1586755545)).menu("show",(function (){var G__13202 = {};
-(G__13202["top"] = (e["pageY"]));
+return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_1_0","#mm_1_0",-1586755545)).menu("show",(function (){var G__6481 = {};
+(G__6481["top"] = (e["pageY"]));
 
-(G__13202["left"] = (e["pageX"]));
+(G__6481["left"] = (e["pageX"]));
 
-return G__13202;
+return G__6481;
 })());
 }
 
 break;
 case "2":
-return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_2","#mm_2",-11660633)).menu("show",(function (){var G__13206 = {};
-(G__13206["top"] = (e["pageY"]));
+return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_2","#mm_2",-11660633)).menu("show",(function (){var G__6485 = {};
+(G__6485["top"] = (e["pageY"]));
 
-(G__13206["left"] = (e["pageX"]));
+(G__6485["left"] = (e["pageX"]));
 
-return G__13206;
+return G__6485;
 })());
 
 break;
 case "3":
-return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_3","#mm_3",-1327779546)).menu("show",(function (){var G__13210 = {};
-(G__13210["top"] = (e["pageY"]));
+return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_3","#mm_3",-1327779546)).menu("show",(function (){var G__6489 = {};
+(G__6489["top"] = (e["pageY"]));
 
-(G__13210["left"] = (e["pageX"]));
+(G__6489["left"] = (e["pageX"]));
 
-return G__13210;
+return G__6489;
 })());
 
 break;
 default:
-return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_0_1","#mm_0_1",-766011765)).menu("show",(function (){var G__13214 = {};
-(G__13214["top"] = (e["pageY"]));
+return jayq.core.$.call(null,new cljs.core.Keyword(null,"#mm_0_1","#mm_0_1",-766011765)).menu("show",(function (){var G__6493 = {};
+(G__6493["top"] = (e["pageY"]));
 
-(G__13214["left"] = (e["pageX"]));
+(G__6493["left"] = (e["pageX"]));
 
-return G__13214;
+return G__6493;
 })());
 
 }
